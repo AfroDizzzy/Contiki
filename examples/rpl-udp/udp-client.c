@@ -1,21 +1,28 @@
+// Libraries to include from contiki
 #include "contiki.h"
+// Networking specific contiki libraries
 #include "net/routing/routing.h"
-#include "random.h"
 #include "net/netstack.h"
 #include "net/ipv6/simple-udp.h"
+
+#include "random.h"
 #include <stdint.h>
 #include <inttypes.h>
-
 #include "sys/log.h"
+
 #define LOG_MODULE "App"
 #define LOG_LEVEL LOG_LEVEL_INFO
 
+// USED TO DO LOGGING
 #define WITH_SERVER_REPLY  1
+
 #define UDP_CLIENT_PORT	8765
 #define UDP_SERVER_PORT	5678
 
+// sends a message to server every x seconds
 #define SEND_INTERVAL		  (60 * CLOCK_SECOND)
 
+// struct = locally visible global variable, when applied to a variable declared inside a function, the value of that variable will be preserved between function calls.
 static struct simple_udp_connection udp_conn;
 static uint32_t rx_count = 0;
 
